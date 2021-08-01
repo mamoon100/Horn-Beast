@@ -1,0 +1,20 @@
+{
+  "files": {
+    "main.css": "/Horn-Beast/static/css/main.b651ccb6.chunk.css",
+    "main.js": "/Horn-Beast/static/js/main.ae5a9305.chunk.js",
+    "main.js.map": "/Horn-Beast/static/js/main.ae5a9305.chunk.js.map",
+    "runtime-main.js": "/Horn-Beast/static/js/runtime-main.cb70a552.js",
+    "runtime-main.js.map": "/Horn-Beast/static/js/runtime-main.cb70a552.js.map",
+    "static/js/2.6e7883eb.chunk.js": "/Horn-Beast/static/js/2.6e7883eb.chunk.js",
+    "static/js/2.6e7883eb.chunk.js.map": "/Horn-Beast/static/js/2.6e7883eb.chunk.js.map",
+    "index.html": "/Horn-Beast/index.html",
+    "static/css/main.b651ccb6.chunk.css.map": "/Horn-Beast/static/css/main.b651ccb6.chunk.css.map",
+    "static/js/2.6e7883eb.chunk.js.LICENSE.txt": "/Horn-Beast/static/js/2.6e7883eb.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cb70a552.js",
+    "static/js/2.6e7883eb.chunk.js",
+    "static/css/main.b651ccb6.chunk.css",
+    "static/js/main.ae5a9305.chunk.js"
+  ]
+}
