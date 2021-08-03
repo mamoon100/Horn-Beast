@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Modal, Button } from "react-bootstrap";
+// import { Modal, Button } from "react-bootstrap";
 
 export default class Header extends Component {
   constructor(props) {
@@ -20,43 +20,36 @@ export default class Header extends Component {
               if (this.state.count === 0) {
                 this.setState({ count: 1 });
                 this.setState({
-                  header: "This is Your First Warning Stop Clicking",
+                  header: "Didn't we do this yesterday ? ",
                 });
                 e.target.style.color = "blue";
               } else if (this.state.count === 1) {
                 this.setState({ count: 2 });
-                this.setState({ header: "I said Stop or Else ........" });
+                this.setState({ header: "We Did it Before I'm Sure " });
                 e.target.style.color = "yellow";
               } else if (this.state.count === 2) {
                 this.setState({ count: 3 });
                 this.setState({
-                  header: "This is your Last WARNING.......!!!!!!",
+                  header: "Yes i remember now you are my hero 🦸",
                 });
                 e.target.style.color = "red";
               } else if (this.state.count === 3) {
                 this.setState({ count: 4 });
-                this.setState({ show: true });
-                this.setState({
-                  header: "Shhhhhhh.....! 🤫",
-                });
-                // this.props.func({
-                //   hero: true,
-                // });
-                e.target.style.color = "white";
                 this.props.change();
+                this.setState({
+                  header:
+                    "The bad guy has run away and hid in another part of the page Find him by taking the next hint from the footer",
+                });
+                e.target.style.color = "white";
+                e.target.style.fontSize = "26px";
               }
             }}
           >
             {this.state.header}
           </h1>
         </header>
-        <Modal
-          show={this.state.show}
-          onHide={() => {
-            this.setState({ show: true });
-          }}
-        >
-          <Modal.Header closeButton>
+        {/* <Modal show={this.state.show}>
+          <Modal.Header>
             <Modal.Title>Welcome To The Beast Dungeon</Modal.Title>
           </Modal.Header>
           <Modal.Body>
@@ -74,7 +67,7 @@ export default class Header extends Component {
               I'm Your Hero ⚔️
             </Button>
           </Modal.Footer>
-        </Modal>
+        </Modal> */}
       </>
     );
   }
