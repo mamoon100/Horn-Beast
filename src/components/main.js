@@ -4,23 +4,28 @@ import {
   Row,
   Col,
   InputGroup,
-  Button,
+  // Button,
   FormControl,
   Container,
+  Dropdown,
 } from "react-bootstrap";
-import { GoSearch } from "react-icons/go";
+// import { GoSearch } from "react-icons/go";
 
 export default class Main extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      search: "",
+      search: " ",
       searchResults: this.props.data,
       lg: 4,
+      horn: 0,
+      dropdown: [...new Set(this.props.data.map((e) => e.horns))],
+      dropText: "Filter by No. Horns",
+      zurgIsDead: false,
     };
   }
 
-  getSearchArray = (word) => {
+  handleTyping = (word) => {
     let tempArray = [];
     for (let i = 0; i < this.props.data.length; i++) {
       if (
@@ -35,26 +40,67 @@ export default class Main extends Component {
       tempArray = [
         {
           description:
-            "👿: You thought you defeated me yesterday, I Can't Lose I'm Zurg the nemesis of Buzz Light Year...@ 🦸: Wait does that mean that the one in the prison is ......... @ 🦸: NOOOOOOOOOOOOO!  ",
-          horns: 0,
+            "Stop searching for things in the past you are hero and hero regret nothing in the past",
+          horns: 2,
           image_url:
-            "https://static.wikia.nocookie.net/blosc/images/f/f4/Zurg.png",
+            "https://i.pinimg.com/originals/b3/17/1b/b3171ba2fd79fa3c27823af92fbee0ae.jpg",
           keyword: "Zurg",
-          title: "Zurg",
+          title: "Master Oogway",
         },
       ];
     }
 
-    if (tempArray.length === 1) {
-      this.setState({
-        lg: 1,
-      });
-    } else {
-      this.setState({
-        lg: 4,
-      });
+    return tempArray;
+  };
+
+  handleHorn = (arr, horn) => {
+    this.setState({
+      horn: horn,
+    });
+    return horn === 0 ? arr : arr.filter((e) => e.horns === horn);
+  };
+
+  handleShow = (word, horn) => {
+    let arr = this.handleTyping(word);
+    arr = this.handleHorn(arr, horn);
+    if (horn === "Hero 🦸") {
+      arr = [
+        {
+          description: "You Found ME 👿 Let's Fight",
+          horns: 2,
+          image_url: "https://i.ytimg.com/vi/wRxY7KzkoGg/maxresdefault.jpg",
+          keyword: "unicorn",
+          title: "Zurg",
+        },
+      ];
     }
-    this.setState({ searchResults: tempArray });
+    if (word === "dead") {
+      arr = [
+        {
+          description:
+            "You Did it ........... 🥳🥳🥳🥳 @ Now Take a reset for Tomorrow",
+          horns: 0,
+          image_url: "https://i.gifer.com/1gj8.gif",
+          keyword: "Celebration",
+          title: "Celebration",
+        },
+      ];
+    }
+
+    this.setState({
+      searchResults: arr,
+      search: word,
+      horn: horn,
+      dropText: horn === 0 ? "All" : horn,
+      lg: arr.length === 1 ? 1 : 4,
+    });
+  };
+
+  handleZurgIsDead = () => {
+    this.setState({
+      zurgIsDead: true,
+    });
+    this.handleShow("dead", 0);
   };
 
   render() {
@@ -71,18 +117,56 @@ export default class Main extends Component {
               <InputGroup
                 className="mb-3"
                 onChange={(e) => {
-                  this.setState({
+                  this.handleShow(
                     // @ts-ignore
-                    search: e.target.value.toLowerCase(),
-                  });
-                  // @ts-ignore
-                  this.getSearchArray(e.target.value.toLowerCase());
+                    e.target.value.toLowerCase(),
+                    this.state.horn
+                  );
                 }}
               >
                 <FormControl placeholder="Search" />
-                <Button variant="outline-secondary" id="button-addon2">
-                  <GoSearch />
-                </Button>
+                <Dropdown>
+                  <Dropdown.Toggle
+                    variant="outline-secondary"
+                    id="dropdown-basic"
+                  >
+                    {this.state.dropText}
+                  </Dropdown.Toggle>
+
+                  <Dropdown.Menu>
+                    <Dropdown.Item
+                      href="#"
+                      value={0}
+                      onClick={() => {
+                        this.handleShow(this.state.search, 0);
+                      }}
+                    >
+                      All
+                    </Dropdown.Item>
+                    {this.state.dropdown.map((item, i) => (
+                      <Dropdown.Item
+                        key={i}
+                        href={`#${item}`}
+                        value={item}
+                        onClick={() => {
+                          this.handleShow(this.state.search, item);
+                        }}
+                      >
+                        {item}
+                      </Dropdown.Item>
+                    ))}
+
+                    {this.props.hero && (
+                      <Dropdown.Item
+                        onClick={() => {
+                          this.handleShow(this.state.search, "Hero 🦸");
+                        }}
+                      >
+                        Hero 🦸
+                      </Dropdown.Item>
+                    )}
+                  </Dropdown.Menu>
+                </Dropdown>
               </InputGroup>
             </Col>
           </Row>
@@ -98,6 +182,7 @@ export default class Main extends Component {
                     description={e.description}
                     key={e.keyword}
                     increment={this.props.increment}
+                    handleZurgIsDead={this.handleZurgIsDead}
                   />
                 </Col>
               );

@@ -19,13 +19,14 @@ export default class App extends Component {
       src: "",
       description: "",
       search: "",
+      zurgIsDead: "",
     };
   }
 
   change = () => {
     this.setState({
       isTheUserHero: true,
-      text: "Try To 'SEARCH' For a Sentence that Buzz Lightyear would say ",
+      text: "Wait there is a new feature in this page i wonder what does it to do with today secret",
     });
   };
 
@@ -48,7 +49,13 @@ export default class App extends Component {
     return (
       <>
         <Header change={this.change} />
-        <Main data={data} changeData={this.changeData} fav={this.state.fav} />
+        <Main
+          data={data}
+          changeData={this.changeData}
+          fav={this.state.fav}
+          hero={this.state.isTheUserHero}
+          zurgIsDead={this.state.zurgIsDead}
+        />
         <SelectedBeast
           show={this.state.show}
           title={this.state.title}
