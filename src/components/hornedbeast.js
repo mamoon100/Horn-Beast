@@ -15,14 +15,14 @@ export default class HornedBeast extends Component {
         bg="secondary"
         text="light"
         border="dark"
-        style={{ width: "100%", height: "600px", padding: "10px" }}
+        style={{ width: "auto", height: "600px", padding: "10px" }}
       >
         <Card.Img
           variant="top"
           src={this.props.src}
           alt={this.props.description}
           title={this.props.title}
-          style={{ width: "auto", height: "400px" }}
+          style={{ width: "100%", height: "350px" }}
           onClick={(e) => {
             this.props.handle(
               this.props.title,
@@ -48,10 +48,17 @@ export default class HornedBeast extends Component {
               this.setState({ fav: this.state.fav + 1 });
               if (this.props.title === "Zurg" && this.state.fav === 3) {
                 this.props.handle(
-                  "Zurg",
-                  "https://static.wikia.nocookie.net/pixar/images/7/76/Toy_Story_2_-_Zurg.jpg",
-                  "You Win this battle, but lose the War @ i will be back better next time"
+                  "Shocking Moment",
+                  "https://64.media.tumblr.com/1778ddfd902e6dff74a7a450b8a96e5f/tumblr_p6c6af7AmS1txtch1o3_400.gifv",
+                  "🤯🤯🤯🤯🤯🤯 @ Don't Listen To him and Continue The Fight "
                 );
+              } else if (this.props.title === "Zurg" && this.state.fav === 6) {
+                this.props.handle(
+                  "You Did it",
+                  "https://64.media.tumblr.com/358e25d245ffa8a4280493a9d7a8aae7/eb9916ef2f0b814f-5a/s540x810/a35d1b4709c1eb4037f8f310e24584545167f4cf.gifv",
+                  "You Did it @ You Are The Hero We Needed"
+                );
+                this.props.handleZurgIsDead();
               }
             }}
           >

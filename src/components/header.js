@@ -20,54 +20,44 @@ export default class Header extends Component {
               if (this.state.count === 0) {
                 this.setState({ count: 1 });
                 this.setState({
-                  header: "Didn't we do this yesterday ? ",
+                  header: "Don't you have something better to do? 🤔",
                 });
+                // @ts-ignore
                 e.target.style.color = "blue";
               } else if (this.state.count === 1) {
                 this.setState({ count: 2 });
-                this.setState({ header: "We Did it Before I'm Sure " });
+                this.setState({
+                  header: "Are You Going to Do this All Day? 😩",
+                });
+                // @ts-ignore
                 e.target.style.color = "yellow";
               } else if (this.state.count === 2) {
                 this.setState({ count: 3 });
                 this.setState({
-                  header: "Yes i remember now you are my hero 🦸",
+                  header:
+                    "Nah Just Kidding 😂 You are welcome any time any day ❤️ ",
                 });
+                // @ts-ignore
                 e.target.style.color = "red";
               } else if (this.state.count === 3) {
                 this.setState({ count: 4 });
                 this.props.change();
                 this.setState({
                   header:
-                    "The bad guy has run away and hid in another part of the page Find him by taking the next hint from the footer",
+                    "You have reach this secret area which will give you an extra feature in the page that will be available only for A hero Like You ",
                 });
+                // @ts-ignore
                 e.target.style.color = "white";
+                // @ts-ignore
                 e.target.style.fontSize = "26px";
+                // @ts-ignore
+                e.target.style.cursor = "auto ";
               }
             }}
           >
             {this.state.header}
           </h1>
         </header>
-        {/* <Modal show={this.state.show}>
-          <Modal.Header>
-            <Modal.Title>Welcome To The Beast Dungeon</Modal.Title>
-          </Modal.Header>
-          <Modal.Body>
-            This is A secret place and if you find it please Help me i wrote
-            this message in hope that someone brave like you find me please let
-            me free by pressing the footer 10 times all my hope in you "My Hero"
-          </Modal.Body>
-          <Modal.Footer>
-            <Button
-              variant="danger"
-              onClick={() => {
-                this.setState({ show: false });
-              }}
-            >
-              I'm Your Hero ⚔️
-            </Button>
-          </Modal.Footer>
-        </Modal> */}
       </>
     );
   }
